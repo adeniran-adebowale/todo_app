@@ -1,47 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/src/features/add_todo_form.dart';
+import 'package:todo_app/src/models/todo.dart';
+import 'package:todo_app/src/services/provider_todo.dart';
+import 'package:uuid/uuid.dart';
+
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class TodoAddForm extends StatelessWidget {
-  final String title;
-  final String description;
-  
+class EditTodoForm extends StatelessWidget {
+  late String id;
+  late Todo todo;
   final ValueChanged<String> onChangedTitle;
   final ValueChanged<String> onChangedDescription;
   final VoidCallback onSavedTodo;
 
-  const TodoAddForm(
+  // ignore: use_super_parameters
+  EditTodoForm(
       {Key? key,
-      this.title = '',
-      this.description = '',
-    
+      required String id,
       required this.onChangedTitle,
       required this.onChangedDescription,
       required this.onSavedTodo})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            titleField(),
-            const SizedBox(
-              height: 10,
-            ),
-            descriptionField(),
+  Widget build(BuildContext context) {
+    final provider = Provider.of<TodoList>(context);
 
-             
-             const SizedBox(
-              height: 10,
-            ),
-            saveButton(),
-          ],
-        ),
-      );
+    void getTodo(id) {
+      todo = provider.getTodoInfo(id);
+    }
+
+    getTodo(id);
+
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          titleField(),
+          const SizedBox(
+            height: 10,
+          ),
+          descriptionField(),
+          const SizedBox(
+            height: 10,
+          ),
+          saveButton(),
+        ],
+      ),
+    );
+  }
 
   Widget titleField() => TextFormField(
         maxLines: 1,
-        initialValue: title,
+        initialValue: todo.title,
         onChanged: onChangedTitle,
         validator: (title) {
           if (title == '') {
@@ -56,7 +69,7 @@ class TodoAddForm extends StatelessWidget {
       );
 
   Widget descriptionField() => TextFormField(
-        initialValue: description,
+        initialValue: todo.description,
         maxLines: 3,
         onChanged: onChangedDescription,
         validator: (description) {
@@ -71,16 +84,17 @@ class TodoAddForm extends StatelessWidget {
         ),
       );
 
-
-
-
-
   Widget saveButton() => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
-          style: ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.purple),),
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll<Color>(Colors.purple),
+          ),
           onPressed: onSavedTodo,
-          child:const Text('Save',style: TextStyle(color: Colors.white),),
+          child: const Text(
+            'Save',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       );
 }
