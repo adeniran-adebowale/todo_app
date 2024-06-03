@@ -31,7 +31,7 @@ class _TodoAppState extends State<HomePage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          
+
           title: Padding(
             padding: const EdgeInsets.all(0.0),
           
@@ -72,16 +72,25 @@ class _TodoAppState extends State<HomePage> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [],
-                )
+                
               ],
             ),
           ),
-          bottom:  const TabBar(tabs: [Text("To Do" ),Text("Planning" ),Text("Done" ),], padding: EdgeInsets.all(0.0), ),
+          bottom:  PreferredSize(
+            preferredSize: Size.fromHeight(35),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: const TabBar(
+                isScrollable: false,
+                tabAlignment: TabAlignment.fill,
+                unselectedLabelColor: Colors.black,
+                
+                
+                
+               
+                tabs: [Text("To Do" ),Text("Planning" ),Text("Done" ),] ),
+            ),
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Theme.of(context).primaryColor,
@@ -103,6 +112,7 @@ class _TodoAppState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: const Icon(Icons.add_box_outlined),
               label: 'Add To Do',
+              
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.calendar_month_outlined),

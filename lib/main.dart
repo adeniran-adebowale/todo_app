@@ -26,7 +26,7 @@ class TodoApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
             color:Colors.white,
           ),
-          scaffoldBackgroundColor: Color(0xFFf6f5ee),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 243, 241, 241),
         ),
         home: HomePage(),
       );

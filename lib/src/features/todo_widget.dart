@@ -16,8 +16,8 @@ class TodoWidget extends StatelessWidget {
     final provider = Provider.of<TodoList>(context);
 
     return Container(
-      padding: EdgeInsets.all(20),
-      color: const Color.fromARGB(255, 243, 241, 241),
+      padding: EdgeInsets.all(5),
+      color: Colors.white,
       child: Row(
         children: [
           Checkbox(
@@ -39,7 +39,7 @@ class TodoWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(todo.title),
-              Text(todo.description),
+              
             ],
           )),
           const SizedBox(
