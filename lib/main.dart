@@ -22,9 +22,9 @@ class TodoApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(
-          primarySwatch: Colors.purple,
+          //primarySwatch: Colors.purple,
           appBarTheme: AppBarTheme(
-            color:Colors.deepPurple[800],
+            color:Colors.white,
           ),
           scaffoldBackgroundColor: Color(0xFFf6f5ee),
         ),
