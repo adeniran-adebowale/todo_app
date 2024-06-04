@@ -20,7 +20,7 @@ class TodoListView extends StatelessWidget {
         : 
               ListView.separated(
                 physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(5),shrinkWrap: true,
                 separatorBuilder: (context, index) => Container(
                   height: 10,
                 ),

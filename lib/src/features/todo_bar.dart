@@ -1,27 +1,91 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/src/features/addtodo.dart';
 import 'package:todo_app/src/features/todo_list_view.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:todo_app/src/features/views/category_card.dart';
+import 'package:todo_app/src/models/todo.dart';
+import 'package:todo_app/src/services/provider_todo.dart';
+import "package:collection/collection.dart";
 
 class TodoBar extends StatelessWidget {
-  const TodoBar({super.key});
+ List<Color> clr = [
+      Colors.orange.shade300,
+      Colors.blue.shade200,
+      Colors.purple.shade100,
+      Colors.red.shade200,
+      Colors.orange.shade600,
+      Colors.blue.shade200,
+      Colors.purple.shade100,
+      Colors.red.shade200
+    ];
+  
+ 
+
+
+  List<String> getCategory(List<Todo> todos) {
+    List<String> l = [];
+    for (var element in todos) {
+      l.add(element.category);
+    }
+
+    return l ;
+  }
+
+  CategoryCard getCategoryCard(String category, List<Todo> listOfTodo){
+    int completed=0;
+    int indx=Random().nextInt(clr.length);
+    int total_todos=listOfTodo.length;
+
+    for (var element in listOfTodo) {
+
+      if(element.isCompleted){
+        completed++;
+      }
+      
+    }
+    
+
+    return CategoryCard(category, completed, total_todos, clr[indx]);
+  }
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TodoList>(context);
+    final todos = provider.todos;
     
+    
+
+    List<Widget> listOfCard=[];
+
+    for (var element in todos) {
+      listOfCard.add(getCategoryCard(element.category, todos));
+      
+    }
+
+
     return Container(
+      padding: EdgeInsets.all(20),
       child: Column(
         children: [
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [],
+              children: listOfCard.toList()
+                //CategoryCard("General", 2, 6, clr[0]),
+                // listOfCard.map(()=>).toList(Card);
+              ,
             ),
           ),
-          SizedBox(
-            height: 10,
-            child: Text("All To Do"),
-          ),
-          TodoListView()
+          // SizedBox(
+          //   height: 20,
+          // ),
+
+          Text("All To Do"),
+
+         // TodoListView()
         ],
       ),
     );

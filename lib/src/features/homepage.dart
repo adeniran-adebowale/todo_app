@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:todo_app/main.dart';
 import 'package:todo_app/src/features/addtodo.dart';
+import 'package:todo_app/src/features/todo_bar.dart';
 import 'package:todo_app/src/features/todo_completed_view.dart';
 import 'package:todo_app/src/features/todo_favorite_view.dart';
 import 'package:todo_app/src/features/todo_list_view.dart';
@@ -21,15 +22,17 @@ class _TodoAppState extends State<HomePage> {
   Widget build(BuildContext context) {
     
     final tabs = [
-      TodoListView(),
-      TodoFavoriteView(),
-      TodoCompletedView(),
-      Container()
+     // TodoListView(),
+      //TodoBar(),
+      //TodoFavoriteView(),
+      //TodoCompletedView(),
+    //  Container()
     ];
 
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        
         appBar: AppBar(
 
           title: Padding(
@@ -43,7 +46,7 @@ class _TodoAppState extends State<HomePage> {
                     
                     Expanded(
                       child: SizedBox(
-                        height: 30,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(0),
@@ -58,7 +61,7 @@ class _TodoAppState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(
-                      width: 10,
+                      width: 20,
                     ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(
@@ -66,8 +69,8 @@ class _TodoAppState extends State<HomePage> {
                       child: Image.asset(
                         'assets/dubai.png',
                         fit: BoxFit.cover,
-                        width: 30,
-                        height: 30,
+                        width: 35,
+                        height: 35,
                       ),
                     ),
                   ],
@@ -82,7 +85,8 @@ class _TodoAppState extends State<HomePage> {
               alignment: Alignment.bottomLeft,
               child: const TabBar(
                 isScrollable: false,
-                tabAlignment: TabAlignment.fill,
+                
+                
                 unselectedLabelColor: Colors.black,
                 
                 
@@ -124,11 +128,18 @@ class _TodoAppState extends State<HomePage> {
             ),
           ],
         ),
-        body: Container(
-          child: TabBarView(
-            children:[TodoListView(),
-      TodoFavoriteView(),
-      TodoCompletedView(),] ,
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+          
+            width: MediaQuery.of(context).size.width,
+              // height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.all(0),
+            child: TabBarView(
+              children:[TodoBar(),
+                TodoFavoriteView(),
+                TodoCompletedView(),] ,
+            ),
           ),
         ),
         //tabBar[selectedIndex],
