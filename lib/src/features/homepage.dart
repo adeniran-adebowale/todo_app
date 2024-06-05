@@ -17,10 +17,31 @@ class HomePage extends StatefulWidget {
 
 class _TodoAppState extends State<HomePage> {
   int selectedIndex = 0;
+  
 
   @override
   Widget build(BuildContext context) {
-    
+    List<Widget> tabViews=[
+      SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+          
+            width: MediaQuery.of(context).size.width,
+               height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.all(5),
+            child: TabBarView(
+              children:[TodoBar(),
+                TodoFavoriteView(),
+                TodoCompletedView(),] ,
+            ),
+          ),
+        ),
+        Container(), 
+        AddTodo(),
+        Container(),
+        Container(),
+        Container(),
+        ];
     final tabs = [
      // TodoListView(),
       //TodoBar(),
@@ -32,7 +53,7 @@ class _TodoAppState extends State<HomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        
+
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
 
@@ -129,20 +150,21 @@ class _TodoAppState extends State<HomePage> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Container(
+        body: tabViews[selectedIndex],
+        // SingleChildScrollView(
+        //   scrollDirection: Axis.vertical,
+        //   child: Container(
           
-            width: MediaQuery.of(context).size.width,
-               height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.all(5),
-            child: TabBarView(
-              children:[TodoBar(),
-                TodoFavoriteView(),
-                TodoCompletedView(),] ,
-            ),
-          ),
-        ),
+        //     width: MediaQuery.of(context).size.width,
+        //        height: MediaQuery.of(context).size.height,
+        //     padding: EdgeInsets.all(5),
+        //     child: TabBarView(
+        //       children:[TodoBar(),
+        //         TodoFavoriteView(),
+        //         TodoCompletedView(),] ,
+        //     ),
+        //   ),
+        // ),
         //tabBar[selectedIndex],
         // floatingActionButton: FloatingActionButton(
         //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

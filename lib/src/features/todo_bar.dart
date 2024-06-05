@@ -14,12 +14,15 @@ class TodoBar extends StatelessWidget {
  List<Color> clr = [
       Colors.orange.shade300,
       Colors.blue.shade200,
-      Colors.purple.shade100,
+      Colors.purple.shade50,
       Colors.red.shade200,
-      Colors.orange.shade600,
-      Colors.blue.shade200,
-      Colors.purple.shade100,
-      Colors.red.shade200
+      Colors.orange.shade100,
+      Colors.blue.shade50,
+      Colors.yellow.shade100,
+      Colors.red.shade50,
+      Colors.pink.shade100,
+      Colors.green.shade50,
+      Colors.grey.shade100
     ];
   
  
