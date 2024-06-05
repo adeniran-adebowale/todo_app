@@ -36,7 +36,7 @@ class _TodoAppState extends State<HomePage> {
             ),
           ),
         ),
-        Container(), 
+        Scaffold(), 
         AddTodo(),
         Container(),
         Container(),
