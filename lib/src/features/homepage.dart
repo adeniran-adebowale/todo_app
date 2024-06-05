@@ -33,6 +33,7 @@ class _TodoAppState extends State<HomePage> {
       length: 3,
       child: Scaffold(
         
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
 
           title: Padding(
@@ -133,8 +134,8 @@ class _TodoAppState extends State<HomePage> {
           child: Container(
           
             width: MediaQuery.of(context).size.width,
-              // height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.all(0),
+               height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.all(5),
             child: TabBarView(
               children:[TodoBar(),
                 TodoFavoriteView(),

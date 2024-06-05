@@ -31,19 +31,22 @@ class TodoBar extends StatelessWidget {
       l.add(element.category);
     }
 
-    return l ;
+    return l.toSet().toList() ;
   }
 
   CategoryCard getCategoryCard(String category, List<Todo> listOfTodo){
     int completed=0;
     int indx=Random().nextInt(clr.length);
-    int total_todos=listOfTodo.length;
+    int total_todos=0;
 
     for (var element in listOfTodo) {
 
-      if(element.isCompleted){
-        completed++;
-      }
+      if(element.category==category){
+        if (element.isCompleted){
+          completed++;
+          }
+        total_todos++;      
+        } 
       
     }
     
@@ -54,18 +57,18 @@ class TodoBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TodoList>(context);
-    final todos = provider.todos;
-    
+    final todos = provider.allTodos;
+   List<String> categories=getCategory(todos); 
     
 
     List<Widget> listOfCard=[];
 
-    for (var element in todos) {
-      listOfCard.add(getCategoryCard(element.category, todos));
+    for (var element in categories) {
+      listOfCard.add(getCategoryCard(element, todos));
       
     }
 
-
+print(listOfCard.length);
     return Container(
       padding: EdgeInsets.all(20),
       child: Column(
@@ -73,7 +76,7 @@ class TodoBar extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: listOfCard.toList()
+              children: listOfCard
                 //CategoryCard("General", 2, 6, clr[0]),
                 // listOfCard.map(()=>).toList(Card);
               ,
@@ -85,7 +88,7 @@ class TodoBar extends StatelessWidget {
 
           Text("All To Do"),
 
-         // TodoListView()
+          TodoListView()
         ],
       ),
     );

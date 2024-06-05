@@ -22,7 +22,7 @@ double percent=double.parse((completed/total_todos*100).toStringAsFixed(2));
 
 
     return Card(
-                  // color: Colors.orange.shade100,
+                  color: clr,
                   
                  
                   child: SizedBox(
@@ -31,6 +31,7 @@ double percent=double.parse((completed/total_todos*100).toStringAsFixed(2));
 
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
+
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +44,7 @@ double percent=double.parse((completed/total_todos*100).toStringAsFixed(2));
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            "${completed}/${total_todos} Completed",
+                            '$completed/$total_todos Completed',
                             style: TextStyle(fontSize: 12),
                           ),
                           Center(

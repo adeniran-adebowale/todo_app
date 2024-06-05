@@ -27,6 +27,9 @@ class TodoList with ChangeNotifier {
         isStarred: true,category: "Personal")
   ];
 
+List<Todo> get allTodos =>
+      _todoList.where((todo) => todo.isCompleted == false || todo.isCompleted==true ).toList();
+
   List<Todo> get todos =>
       _todoList.where((todo) => todo.isCompleted == false).toList();
   List<Todo> get favorite_todos => _todoList
